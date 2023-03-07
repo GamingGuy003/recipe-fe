@@ -45,7 +45,7 @@ export class RecipeService {
   async getDetail(id: string) {
     try {
       const response = await this.http.get<ApiResponse>(API + '/?getdetail=' + id).toPromise();
-      var ret: RecipeDetailItem = new RecipeDetailItem(new Array(), new Map<string, string>(), new Map<string, string>(), new Map<string, string>(), new Map<string, string>(), "");
+      var ret: RecipeDetailItem = new RecipeDetailItem(new Array(), new Map<string, string>(), new Map<string, string>(), new Map<string, string>(), new Map<string, string>(), "", new Map<number, string>());
       if (Array.isArray(response.payload)) {
         throw new Error("Received unexpected RecipeList")
       }

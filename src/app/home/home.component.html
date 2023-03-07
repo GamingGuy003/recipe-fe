@@ -1,1 +1,29 @@
-<p>home works!</p>
+<h1>Top Rated</h1>
+<div style="display: flex;">
+  <mat-card *ngFor="let top of toprecipes" routerLink="/{{getLang(top)}}/recipe/{{top.id}}" mat-ripple>
+      <mat-card-header>
+        <mat-card-title>{{ top.title.get(getLang(top)) }}</mat-card-title>
+        <mat-card-subtitle>{{ top.avgrating }} ⭐</mat-card-subtitle>
+      </mat-card-header>
+      <img matCardImage [src]="top.imagelink">
+      <mat-card-content>
+        {{top.description.get(getLang(top))}}
+    </mat-card-content>
+    <mat-card-footer></mat-card-footer>
+  </mat-card>
+</div>
+
+<h1>Random</h1>
+<div style="display: flex;">
+  <mat-card *ngFor="let random of randomrecipes" routerLink="/{{getLang(random)}}/recipe/{{random.id}}" mat-ripple>
+    <mat-card-header>
+      <mat-card-title>{{ random.title.get(getLang(random)) }}</mat-card-title>
+      <mat-card-subtitle>{{ random.avgrating }} ⭐</mat-card-subtitle>
+    </mat-card-header>
+    <img matCardImage [src]="random.imagelink">
+    <mat-card-content>
+        {{random.description.get(getLang(random))}}
+  </mat-card-content>
+  <mat-card-footer></mat-card-footer>
+</mat-card>
+</div>

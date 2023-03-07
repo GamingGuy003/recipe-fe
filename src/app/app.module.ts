@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeListCardComponent } from './recipe-list-card/recipe-list-card.component';
 import { HomeComponent } from './home/home.component';
+import { NavComponentComponent } from './nav-component/nav-component.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { HomeComponent } from './home/home.component';
     RecipeListComponent,
     RecipeComponent,
     RecipeListCardComponent,
-    HomeComponent
+    HomeComponent,
+    NavComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { HomeComponent } from './home/home.component';
     MatIconModule,
     MatTooltipModule,
     MatMenuModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonToggleModule
   ],
   providers: [
     RecipeService

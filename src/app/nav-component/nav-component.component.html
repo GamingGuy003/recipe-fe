@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <div>
+    <span [style.cursor]="'pointer'" [routerLink]="['/home']" [queryParams]="{}" mat-ripple matTooltip="Home">Rezepteliste</span>
+  </div>
+  <a [routerLink]="['.']">hirn</a>
+  <mat-button-toggle-group>
+    <mat-button-toggle value="de">DE</mat-button-toggle>
+    <mat-button-toggle value="it">IT</mat-button-toggle>
+    <mat-button-toggle value="en">EN</mat-button-toggle>
+  </mat-button-toggle-group>
+</mat-toolbar>
