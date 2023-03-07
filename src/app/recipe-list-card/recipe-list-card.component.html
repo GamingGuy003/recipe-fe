@@ -1,0 +1,12 @@
+<mat-card mat-ripple routerLink="/{{ displaylang }}/recipe/{{ this.recipe?.id }}">
+  <mat-card-header>
+    <div mat-card-avatar style="background-image: url('{{ recipe?.imagelink }}');"></div>
+    <mat-card-title>{{ recipe?.title?.get(this.displaylang) }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ recipe?.avgrating }} ⭐
+      <p>{{ recipe?.description?.get(this.displaylang) }}</p>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content></mat-card-content>
+  <mat-card-footer></mat-card-footer>
+</mat-card>

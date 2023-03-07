@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-header style="background-image: linear-gradient(to bottom, transparent, transparent, transparent, #ffffff), url('{{ this.recipe?.imagelink }}');"></mat-card-header>
+  <mat-card-content>
+    <mat-card-title>{{ this.recipe?.title?.get(this.displaylang) }}</mat-card-title>
+    <mat-card-subtitle>
+      <span [mat-menu-trigger-for]="menu" matTooltip="Ratings">{{ getRating() }} ⭐</span>
+      <button mat-icon-button matTooltip="Rate" matTooltipPosition="right">
+          <mat-icon>add</mat-icon>
+      </button>
+    </mat-card-subtitle>
+    <h3>Ingredients:</h3>
+    <div class="ingredients" [innerHTML]="this.recipe?.ingredients?.get(this.displaylang)"></div>
+    <h3>Recipe:</h3>
+    <div class="recipetext" [innerHTML]="this.recipe?.recipetext?.get(this.displaylang)"></div>
+    <h3>Tips:</h3>
+    <div class="tiptext" [innerHTML]="this.recipe?.tipptext?.get(this.displaylang)"></div>
+  </mat-card-content>
+</mat-card>
+
+<mat-menu #menu="matMenu">
+  <mat-list-item>healing</mat-list-item>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
