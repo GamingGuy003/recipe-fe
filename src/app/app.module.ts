@@ -28,6 +28,7 @@ import { RecipeListCardComponent } from './recipe-list-card/recipe-list-card.com
 import { HomeComponent } from './home/home.component';
 import { NavComponentComponent } from './nav-component/nav-component.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     RecipeListCardComponent,
     HomeComponent,
     NavComponentComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    SignUpFormComponent
   ],
   imports: [
     BrowserModule,

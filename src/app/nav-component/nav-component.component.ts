@@ -1,3 +1,4 @@
+import { SignUpFormComponent } from './../sign-up-form/sign-up-form.component';
 import { ApiResponse } from './../shared/api-response';
 import { HttpClient } from '@angular/common/http';
 import { LoginFormComponent } from './../login-form/login-form.component';
@@ -46,6 +47,10 @@ export class NavComponentComponent implements OnInit {
 
   loginUI() {
     this.dialog.open(LoginFormComponent)
+  }
+
+  signUpUI() {
+    this.dialog.open(SignUpFormComponent)
   }
 
   logoff() {
