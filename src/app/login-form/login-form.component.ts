@@ -41,6 +41,7 @@ export class LoginFormComponent implements OnInit {
       this.http.post<ApiResponse>(this.globals.apiurl + '/auth', formData).subscribe(response => {
         if (response.response_code === 200) {
           this.globals.authkey = response.payload;
+          this.globals.username = username;
           this.dialogRef.close();
           this._snackBar.open('Successfully logged in!', 'Okay' , { duration: 3000 })
         } else {

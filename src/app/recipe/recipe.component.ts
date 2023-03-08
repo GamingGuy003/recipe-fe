@@ -1,9 +1,12 @@
+import { RatingFormComponent } from './../rating-form/rating-form.component';
+import { HttpClient } from '@angular/common/http';
 import { RecipeDetailItem } from './../shared/recipe-detail-item';
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../shared/recipe-service';
 import { ActivatedRoute } from '@angular/router';
 import { Globals } from '../shared/globals';
-import { RecipeListItem } from '../shared/recipe-list-item';
+import { ApiResponse } from '../shared/api-response';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'rec-recipe',
@@ -15,6 +18,7 @@ export class RecipeComponent implements OnInit {
   recipe: RecipeDetailItem | undefined;
 
   constructor(
+    public dialog: MatDialog,
     private rec: RecipeService,
     private route: ActivatedRoute,
     private globals: Globals,
@@ -40,6 +44,14 @@ export class RecipeComponent implements OnInit {
     } else {
       return this.globals.lang;
     }
+  }
+
+  logged() {
+    return this.globals.logged()
+  }
+
+  rate() {
+    this.dialog.open(RatingFormComponent)
   }
 
 }

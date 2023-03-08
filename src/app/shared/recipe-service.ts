@@ -39,7 +39,7 @@ export class RecipeService {
       });
       return ret;
     } catch (err) {
-      console.log(err);
+      console.error(err);
       throw err;
     }
   }
@@ -51,7 +51,6 @@ export class RecipeService {
       if (Array.isArray(response.payload)) {
         throw new Error("Received unexpected RecipeList")
       }
-
       ret.imagelink = (response.payload as RecipeDetailItem).imagelink;
       for(let lang of Object.entries((response.payload as RecipeDetailItem).languages.valueOf())) {
         ret.languages.push(lang[1])
@@ -74,7 +73,7 @@ export class RecipeService {
       }
       return ret;
     }  catch (err) {
-      console.log(err);
+      console.error(err);
       throw err;
     }
   }

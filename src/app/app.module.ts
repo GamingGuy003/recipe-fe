@@ -17,11 +17,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeListCardComponent } from './recipe-list-card/recipe-list-card.component';
@@ -29,6 +29,7 @@ import { HomeComponent } from './home/home.component';
 import { NavComponentComponent } from './nav-component/nav-component.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
+import { RatingFormComponent } from './rating-form/rating-form.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
     HomeComponent,
     NavComponentComponent,
     LoginFormComponent,
-    SignUpFormComponent
+    SignUpFormComponent,
+    RatingFormComponent
   ],
   imports: [
     BrowserModule,

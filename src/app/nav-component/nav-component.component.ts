@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { Globals } from './../shared/globals';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -42,7 +41,7 @@ export class NavComponentComponent implements OnInit {
   }
 
   logged() {
-    return this.globals.authkey.length > 0
+    return this.globals.logged()
   }
 
   loginUI() {
@@ -59,6 +58,7 @@ export class NavComponentComponent implements OnInit {
     this.http.post<ApiResponse>(this.globals.apiurl + '/logoff', formdata).subscribe(response => {
       if (response.response_code === 200) {
         this.globals.authkey = "";
+        this.globals.username = "";
         this._snackBar.open('Successfully logged out!', 'Okay' , { duration: 2000 })
       } else {
         console.error(response.payload)
