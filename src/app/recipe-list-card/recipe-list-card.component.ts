@@ -1,3 +1,4 @@
+import { Globals } from './../shared/globals';
 import { RecipeListItem } from './../shared/recipe-list-item';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -8,20 +9,25 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class RecipeListCardComponent implements OnInit {
 
-  @Input() lang: string | undefined;
   @Input() recipe: RecipeListItem | undefined;
-  displaylang: string = '';
 
-  constructor() { }
+  constructor(
+    private globals: Globals
+  ) { }
 
   ngOnInit(): void {
-    if (typeof this.lang === 'undefined' || !this.recipe?.languages.includes(this.lang)) {
-      if (typeof this.recipe?.languages.entries().next().value[1] !== 'undefined') {
-        this.displaylang = this.recipe?.languages.entries().next().value[1];
+
+  }
+
+  getLang(recipe: RecipeListItem | undefined) {
+    if (!recipe?.languages.includes(this.globals.lang)) {
+      if (typeof recipe === 'undefined') {
+        return this.globals.lang;
       }
+      return recipe.languages?.[0];
     } else {
-      this.displaylang = this.lang;
-    };
+      return this.globals.lang;
+    }
   }
 
 }

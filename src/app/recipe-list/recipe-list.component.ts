@@ -1,3 +1,4 @@
+import { Globals } from './../shared/globals';
 import { RecipeListItem } from './../shared/recipe-list-item';
 import { RecipeService } from './../shared/recipe-service';
 import { Component, OnInit } from '@angular/core';
@@ -16,12 +17,22 @@ export class RecipeListComponent implements OnInit {
   constructor(
     private rec: RecipeService,
     private route: ActivatedRoute,
+    private globals: Globals
   ) { }
 
   ngOnInit(): void {
-    this.route.snapshot.params.lang !== null ? this.lang = this.route.snapshot.params.lang : {};
+    this.search("");
+  }
+
+  search(searchTerm: string) {
     this.rec.getRecipeList()
-      .then(res => this.recipes = res)
+      .then(res => this.recipes = res.filter(value => {
+        let res = false;
+        value.title.forEach((value, key) => {
+          value.toLowerCase().includes(searchTerm) ? res = true : {};
+        })
+        return res;
+      }))
       .catch(err => console.error(err));
   }
 

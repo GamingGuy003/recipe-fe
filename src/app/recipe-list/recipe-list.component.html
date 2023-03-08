@@ -1,4 +1,14 @@
-<mat-list-item *ngFor="let recipe of recipes">
-  <rec-recipe-list-card [lang]="this.lang" [recipe]="recipe"></rec-recipe-list-card>
-</mat-list-item>
-
+<div class="main">
+  <mat-form-field>
+    <input type="text" placeholder="Search... " #searchTerm (keyup)="search(searchTerm.value)" matInput>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <div *ngIf="recipes; else leer">
+    <mat-list-item *ngFor="let recipe of recipes">
+      <rec-recipe-list-card [recipe]="recipe"></rec-recipe-list-card>
+    </mat-list-item>
+  </div>
+  <ng-template #leer>
+    <p>No results</p>
+  </ng-template>
+</div>

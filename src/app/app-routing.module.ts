@@ -5,10 +5,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/en/home', pathMatch: 'full' },
-  { path: ':lang/list', component: RecipeListComponent },
-  { path: ':lang/recipe/:id', component: RecipeComponent },
-  { path: ':lang/home', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'list', component: RecipeListComponent },
+  { path: 'recipe/:id', component: RecipeComponent },
+  { path: 'home', component: HomeComponent },
 ];
 
 @NgModule({

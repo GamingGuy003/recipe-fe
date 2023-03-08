@@ -1,5 +1,12 @@
+import { ApiResponse } from './../shared/api-response';
+import { HttpClient } from '@angular/common/http';
+import { LoginFormComponent } from './../login-form/login-form.component';
 import { Router } from '@angular/router';
+import { Globals } from './../shared/globals';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'rec-nav-component',
@@ -8,11 +15,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponentComponent implements OnInit {
 
+  home: boolean = false;
+
   constructor(
-    private router: Router
+    public dialog: MatDialog,
+    private router: Router,
+    private globals: Globals,
+    private http: HttpClient,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
   }
 
+  changeLang(lang: string) {
+    this.globals.lang = lang;
+  }
+
+  getLang() {
+    return this.globals.lang
+  }
+
+  checkHome() {
+    return this.router.url === '/home'
+  }
+
+  logged() {
+    return this.globals.authkey.length > 0
+  }
+
+  loginUI() {
+    this.dialog.open(LoginFormComponent)
+  }
+
+  logoff() {
+    let formdata = new FormData();
+    formdata.append('authkey', this.globals.authkey)
+    this.http.post<ApiResponse>(this.globals.apiurl + '/logoff', formdata).subscribe(response => {
+      if (response.response_code === 200) {
+        this.globals.authkey = "";
+        this._snackBar.open('Successfully logged out!', 'Okay' , { duration: 2000 })
+      } else {
+        console.error(response.payload)
+      }
+    });
+  }
 }

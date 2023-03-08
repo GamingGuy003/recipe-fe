@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RecipeService } from './../shared/recipe-service';
 import { RecipeListItem } from './../shared/recipe-list-item';
 import { Component, OnInit } from '@angular/core';
+import { Globals } from '../shared/globals';
 
 @Component({
   selector: 'rec-home',
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private rs: RecipeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private globals: Globals,
   ) { }
 
   ngOnInit(): void {
@@ -33,12 +35,10 @@ export class HomeComponent implements OnInit {
   }
 
   getLang(recipe: RecipeListItem) {
-    if (!this.route.snapshot.params['lang']) {
-      if (recipe.languages?.[0]) {
-        return recipe.languages?.[0];
-      }
+    if (!recipe.languages.includes(this.globals.lang)) {
+      return recipe.languages?.[0];
     } else {
-      return this.route.snapshot.params.lang;
+      return this.globals.lang;
     }
   }
 

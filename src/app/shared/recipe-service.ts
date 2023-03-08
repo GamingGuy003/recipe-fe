@@ -1,19 +1,21 @@
+import { Globals } from './globals';
 import { RecipeDetailItem } from './recipe-detail-item';
 import { RecipeListItem } from './recipe-list-item';
 import { ApiResponse } from './api-response';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-const API = "http://localhost:8080";
-
 @Injectable()
 export class RecipeService {
 
-  constructor (private http: HttpClient) {}
+  constructor (
+    private http: HttpClient,
+    private globals: Globals
+  ) {}
 
   async getRecipeList(): Promise<RecipeListItem[]> {
     try {
-      const response = await this.http.get<ApiResponse>(API + '/recipelist').toPromise();
+      const response = await this.http.get<ApiResponse>(this.globals.apiurl + '/recipelist').toPromise();
       var ret: RecipeListItem[] = new Array();
       if (!Array.isArray(response.payload)) {
         throw new Error("Received unexpected RecipeDetail")
@@ -44,7 +46,7 @@ export class RecipeService {
 
   async getDetail(id: string) {
     try {
-      const response = await this.http.get<ApiResponse>(API + '/?getdetail=' + id).toPromise();
+      const response = await this.http.get<ApiResponse>(this.globals.apiurl + '/?getdetail=' + id).toPromise();
       var ret: RecipeDetailItem = new RecipeDetailItem(new Array(), new Map<string, string>(), new Map<string, string>(), new Map<string, string>(), new Map<string, string>(), "", new Map<number, string>());
       if (Array.isArray(response.payload)) {
         throw new Error("Received unexpected RecipeList")
@@ -70,25 +72,6 @@ export class RecipeService {
       for(let tipp of Object.entries((response.payload as RecipeDetailItem).tipptext.valueOf())) {
         ret.tipptext.set(tipp[0], tipp[1])
       }
-
-      /*
-      .forEach(element => {
-        let item: RecipeListItem = new RecipeListItem(0, new Map<string, string>(), '', '', [], new Map<string, string>());
-
-        Object.assign(item, element);
-        item.description = new Map();
-        item.title = new Map();
-
-        for(let desc of Object.entries((element as RecipeListItem).description.valueOf())) {
-          item.description.set(desc[0], desc[1])
-        }
-        for(let title of Object.entries((element as RecipeListItem).title.valueOf())) {
-          item.title.set(title[0], title[1])
-        }
-
-        ret.push(item);
-      });
-      */
       return ret;
     }  catch (err) {
       console.log(err);

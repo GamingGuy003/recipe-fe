@@ -1,3 +1,4 @@
+import { Globals } from './shared/globals';
 import { RecipeService } from './shared/recipe-service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,6 +12,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormBuilder } from '@angular/forms'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +27,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeListCardComponent } from './recipe-list-card/recipe-list-card.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponentComponent } from './nav-component/nav-component.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +36,8 @@ import { NavComponentComponent } from './nav-component/nav-component.component';
     RecipeComponent,
     RecipeListCardComponent,
     HomeComponent,
-    NavComponentComponent
+    NavComponentComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
@@ -45,10 +53,18 @@ import { NavComponentComponent } from './nav-component/nav-component.component';
     MatTooltipModule,
     MatMenuModule,
     MatToolbarModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatInputModule,
+    FormsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [
-    RecipeService
+    RecipeService,
+    Globals,
+    FormBuilder,
+    MatSnackBarModule
   ],
   bootstrap: [AppComponent]
 })
