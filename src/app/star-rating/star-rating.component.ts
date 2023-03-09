@@ -15,13 +15,9 @@ export class StarRatingComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.rating)
     this.rating ? this.full = Math.floor(this.rating) : {};
     this.rating ? this.rating % 1 == 0 ? {} : this.half = 1 : {};
     this.empty = this.empty - this.full - this.half;
-    console.log(
-      "full: " + this.full + " half: " + this.half + " empty: " + this.empty
-    );
   }
 
   toArr(n: number) {

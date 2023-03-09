@@ -34,7 +34,6 @@ export class RecipeService {
         for(let title of Object.entries((element as RecipeListItem).title.valueOf())) {
           item.title.set(title[0], title[1])
         }
-
         ret.push(item);
       });
       return ret;

@@ -1,9 +1,9 @@
 <mat-card mat-ripple routerLink="/recipe/{{ this.recipe?.id }}">
   <mat-card-header>
-    <div mat-card-avatar style="background-image: url('{{ recipe?.imagelink }}');"></div>
+    <div mat-card-avatar style="background-image: url('https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif');" [lazyLoad]="getLink()"></div>
     <mat-card-title>{{ recipe?.title?.get(getLang(recipe)) }}</mat-card-title>
     <mat-card-subtitle>
-      <rec-star-rating [rating]="recipe?.avgrating" matTooltip="{{ recipe?.avgrating }} / 5 Stars"></rec-star-rating>
+      <rec-star-rating [rating]="recipe?.avgrating" matTooltip="{{ recipe?.avgrating?.toPrecision(2) }} / 5 Stars"></rec-star-rating>
       <span>({{ this.recipe?.ratingcount }})</span>
       <p>{{ recipe?.description?.get(getLang(recipe)) }}</p>
     </mat-card-subtitle>

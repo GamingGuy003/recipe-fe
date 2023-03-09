@@ -1,9 +1,9 @@
 <mat-card>
   <mat-card-header style="background-image: linear-gradient(to bottom, transparent, transparent, transparent, #ffffff), url('{{ this.recipe?.imagelink }}');"></mat-card-header>
-  <mat-card-content>
+  <mat-card-content *ngIf="this.recipe">
     <mat-card-title>{{ this.recipe.title.get(getLang(this.recipe)) }}</mat-card-title>
     <mat-card-subtitle>
-      <rec-star-rating [rating]="recipe.avgrating" (click)="showRatings()"></rec-star-rating><span>({{ this.recipe.ratings.size }})</span>
+      <rec-star-rating [rating]="recipe.avgrating" (click)="showRatings()" matTooltip="{{ this.recipe.avgrating.toPrecision(2) }} / 5 Stars"></rec-star-rating><span>({{ this.recipe.ratings.size }})</span>
       <button mat-icon-button matTooltip="Rate" *ngIf="logged()" (click)="rate()">
         <mat-icon>add</mat-icon>
       </button>

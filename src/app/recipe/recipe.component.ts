@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class RecipeComponent implements OnInit {
 
   recipe!: RecipeDetailItem;
+  rating: number = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -28,6 +29,7 @@ export class RecipeComponent implements OnInit {
   ngOnInit(): void {
     this.rec.getDetail(this.route.snapshot.params.id).then(recipe => {
       this.recipe = recipe;
+      this.rating = this.recipe.avgrating;
     })
     .catch(err => console.error(err));
   }

@@ -21,7 +21,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
 import { CookieService } from 'ngx-cookie-service';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import { RatingFormComponent } from './rating-form/rating-form.component';
 import { RatingDialogComponent } from './rating-dialog/rating-dialog.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
+import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
     SignUpFormComponent,
     RatingFormComponent,
     RatingDialogComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    LanguageSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
     MatSnackBarModule,
     MatTableModule,
     FlexLayoutModule,
-    MatRadioModule
+    MatSelectModule,
+    LazyLoadImageModule
   ],
   providers: [
     RecipeService,

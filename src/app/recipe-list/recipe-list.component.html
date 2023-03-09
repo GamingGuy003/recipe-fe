@@ -1,6 +1,6 @@
 <div class="main">
   <mat-form-field>
-    <input type="text" placeholder="Search... " #searchTerm (keyup)="search(searchTerm.value)" matInput>
+    <input type="text" placeholder="Search... " #searchTerm (keyup)="search(searchTerm.value)" matInput cdkFocusInitial>
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
   <div *ngIf="recipes; else leer">

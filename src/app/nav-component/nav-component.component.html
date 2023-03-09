@@ -19,20 +19,8 @@
       <mat-icon>logout</mat-icon>
     </button>
   </ng-template>
-  <div fxLayout="row" fxLayoutAlign="start center" fxHide.lt-sm>
-    <mat-button-toggle-group appearance="legacy" style="background-color: white;" [value]="getLang()">
-      <mat-button-toggle value="de" (click)="changeLang('de')" >DE</mat-button-toggle>
-      <mat-button-toggle value="it" (click)="changeLang('it')">IT</mat-button-toggle>
-      <mat-button-toggle value="en" (click)="changeLang('en')">EN</mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
-
-  <button mat-icon-button [matMenuTriggerFor]="languageOptions" fxShow.lt-sm fxHide.gt-xs>
+  <span *ngIf="logged()">{{ getUsername() }}</span>
+  <button mat-icon-button matTooltip="Language" (click)="langUI()">
     <mat-icon>language</mat-icon>
   </button>
-  <mat-menu #languageOptions="matMenu">
-    <button value="de" [ngClass]="{ 'selected': getLang() === 'de' }" mat-menu-item (click)="changeLang('de')">DE</button>
-    <button value="it" [ngClass]="{ 'selected': getLang() === 'it' }" mat-menu-item (click)="changeLang('it')">IT</button>
-    <button value="en" [ngClass]="{ 'selected': getLang() === 'en' }" mat-menu-item (click)="changeLang('en')">EN</button>
-  </mat-menu>
 </mat-toolbar>

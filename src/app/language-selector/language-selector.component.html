@@ -1,0 +1,9 @@
+<div align="center">
+  <h3 mat-dialog-title>Language</h3>
+  <br>
+  <mat-select [value]="getLang()">
+      <mat-option value="de" (click)="changeLang('de')">German</mat-option>
+      <mat-option value="en" (click)="changeLang('en')">English</mat-option>
+      <mat-option value="it" (click)="changeLang('it')">Italian</mat-option>
+  </mat-select>
+</div>

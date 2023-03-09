@@ -1,3 +1,4 @@
+import { LanguageSelectorComponent } from './../language-selector/language-selector.component';
 import { CookieService } from 'ngx-cookie-service';
 import { SignUpFormComponent } from './../sign-up-form/sign-up-form.component';
 import { ApiResponse } from './../shared/api-response';
@@ -35,14 +36,6 @@ export class NavComponentComponent implements OnInit {
       .catch(err => console.error(err));
   }
 
-  changeLang(lang: string) {
-    this.globals.lang = lang;
-  }
-
-  getLang() {
-    return this.globals.lang
-  }
-
   checkSearch() {
     return this.router.url !== '/list'
   }
@@ -59,8 +52,16 @@ export class NavComponentComponent implements OnInit {
     this.dialog.open(SignUpFormComponent)
   }
 
+  langUI() {
+    this.dialog.open(LanguageSelectorComponent)
+  }
+
   async logoff() {
     await this.globals.logoff(this.http, this.cookieService);
     this._snackBar.open('Successfully logged out!', 'Okay' , { duration: 2000 })
+  }
+
+  getUsername() {
+    return this.globals.getUname(this.cookieService);
   }
 }

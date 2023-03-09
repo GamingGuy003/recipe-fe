@@ -29,4 +29,9 @@ export class RecipeListCardComponent implements OnInit {
       return this.globals.lang;
     }
   }
+
+  getLink() {
+    let link = this.recipe?.imagelink;
+    return link ? link : "";
+  }
 }
