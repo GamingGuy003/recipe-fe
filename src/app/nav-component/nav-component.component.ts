@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { SignUpFormComponent } from './../sign-up-form/sign-up-form.component';
 import { ApiResponse } from './../shared/api-response';
 import { HttpClient } from '@angular/common/http';
@@ -22,10 +23,16 @@ export class NavComponentComponent implements OnInit {
     private router: Router,
     private globals: Globals,
     private http: HttpClient,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit(): void {
+    this.globals.checkApiAuth(this.http, this.cookieService)
+      .then(value => {
+        !value ? this.globals.reset(this.cookieService) : {};
+      })
+      .catch(err => console.error(err));
   }
 
   changeLang(lang: string) {
@@ -36,12 +43,12 @@ export class NavComponentComponent implements OnInit {
     return this.globals.lang
   }
 
-  checkHome() {
-    return this.router.url === '/home'
+  checkSearch() {
+    return this.router.url !== '/list'
   }
 
   logged() {
-    return this.globals.logged()
+    return this.globals.logged(this.cookieService)
   }
 
   loginUI() {
@@ -52,17 +59,8 @@ export class NavComponentComponent implements OnInit {
     this.dialog.open(SignUpFormComponent)
   }
 
-  logoff() {
-    let formdata = new FormData();
-    formdata.append('authkey', this.globals.authkey)
-    this.http.post<ApiResponse>(this.globals.apiurl + '/logoff', formdata).subscribe(response => {
-      if (response.response_code === 200) {
-        this.globals.authkey = "";
-        this.globals.username = "";
-        this._snackBar.open('Successfully logged out!', 'Okay' , { duration: 2000 })
-      } else {
-        console.error(response.payload)
-      }
-    });
+  async logoff() {
+    await this.globals.logoff(this.http, this.cookieService);
+    this._snackBar.open('Successfully logged out!', 'Okay' , { duration: 2000 })
   }
 }

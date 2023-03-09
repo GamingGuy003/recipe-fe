@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -14,7 +15,7 @@ import { Globals } from '../shared/globals';
 })
 export class SignUpFormComponent implements OnInit {
 
-  error!: string | null;
+  error!: string | undefined;
   form: FormGroup = new FormGroup({});
 
   constructor(
@@ -23,6 +24,7 @@ export class SignUpFormComponent implements OnInit {
     private fb: FormBuilder,
     private globals: Globals,
     private _snackBar: MatSnackBar,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -32,36 +34,15 @@ export class SignUpFormComponent implements OnInit {
     })
   }
 
-  signup() {
-    this.error = null;
-    let formData = new FormData();
-    const username = this.form.get('username')?.value;
-    const password = this.form.get('password')?.value;
-    if (username && password) {
-      formData.append('cuser', username);
-      formData.append('cpass', password);
-      this.http.post<ApiResponse>(this.globals.apiurl + '/createuser', formData).subscribe(response => {
-        if (response.response_code === 200) {
-          formData = new FormData();
-          formData.append('user', username);
-          formData.append('pass', password);
-          this.http.post<ApiResponse>(this.globals.apiurl + '/auth', formData).subscribe(response => {
-            if (response.response_code === 200) {
-              this.globals.authkey = response.payload;
-              this.dialogRef.close();
-              this._snackBar.open('Successfully created user!', 'Okay' , { duration: 3000 });
-            } else {
-              this.error = response.payload;
-            }
-          }, error => {
-            this.error = error.message;
-          });
-        } else {
-          this.error = response.payload;
-        }
-      }, error => {
-        this.error = error.message;
-      });
+  async signup() {
+    let uname = this.form.get('username')?.value;
+    let passw = this.form.get('password')?.value;
+    if (uname && passw) {
+      this.error = await this.globals.signup(this.http, this.cookieService, uname, passw);
+      if (!this.error) {
+        this.dialogRef.close();
+        this._snackBar.open('Successfully created user!', 'Okay' , { duration: 3000 });
+      }
     }
   }
 }

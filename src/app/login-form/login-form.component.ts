@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiResponse } from './../shared/api-response';
 import { HttpClient } from '@angular/common/http';
@@ -21,6 +22,7 @@ export class LoginFormComponent implements OnInit {
     private fb: FormBuilder,
     private globals: Globals,
     private _snackBar: MatSnackBar,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -30,26 +32,18 @@ export class LoginFormComponent implements OnInit {
     })
   }
 
-  login() {
+  async login() {
     this.error = null;
-    const formData = new FormData();
     const username = this.form.get('username')?.value;
     const password = this.form.get('password')?.value;
     if (username && password) {
-      formData.append('user', username);
-      formData.append('pass', password);
-      this.http.post<ApiResponse>(this.globals.apiurl + '/auth', formData).subscribe(response => {
-        if (response.response_code === 200) {
-          this.globals.authkey = response.payload;
-          this.globals.username = username;
-          this.dialogRef.close();
-          this._snackBar.open('Successfully logged in!', 'Okay' , { duration: 3000 })
-        } else {
-          this.error = response.payload;
-        }
-      }, error => {
-        this.error = error.message;
-      });
+      let ret = await this.globals.login(this.http, this.cookieService, username, password);
+      if (ret) {
+        this.error = ret;
+      } else {
+        this.dialogRef.close();
+        this._snackBar.open('Successfully logged in!', 'Okay' , { duration: 3000 })
+      }
     }
   }
 

@@ -1,11 +1,11 @@
+import { CookieService } from 'ngx-cookie-service';
+import { RatingDialogComponent } from './../rating-dialog/rating-dialog.component';
 import { RatingFormComponent } from './../rating-form/rating-form.component';
-import { HttpClient } from '@angular/common/http';
 import { RecipeDetailItem } from './../shared/recipe-detail-item';
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../shared/recipe-service';
 import { ActivatedRoute } from '@angular/router';
 import { Globals } from '../shared/globals';
-import { ApiResponse } from '../shared/api-response';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -22,6 +22,7 @@ export class RecipeComponent implements OnInit {
     private rec: RecipeService,
     private route: ActivatedRoute,
     private globals: Globals,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit(): void {
@@ -29,10 +30,6 @@ export class RecipeComponent implements OnInit {
       this.recipe = recipe;
     })
     .catch(err => console.error(err));
-  }
-
-  getRating() {
-    return 0
   }
 
   getLang(recipe: RecipeDetailItem | undefined) {
@@ -47,11 +44,25 @@ export class RecipeComponent implements OnInit {
   }
 
   logged() {
-    return this.globals.logged()
+    return this.globals.logged(this.cookieService)
   }
 
   rate() {
-    this.dialog.open(RatingFormComponent)
+    let ref = this.dialog.open(RatingFormComponent);
+    ref.afterClosed().subscribe(_ => {
+      this.rec.getDetail(this.route.snapshot.params.id).then(recipe => {
+        this.recipe = recipe;
+      })
+      .catch(err => console.error(err));
+    })
+  }
+
+  showRatings() {
+    this.dialog.open(RatingDialogComponent, {data: this.recipe?.ratings})
+  }
+
+  getStars() {
+    return this.globals.getStars(this.recipe?.avgrating);
   }
 
 }

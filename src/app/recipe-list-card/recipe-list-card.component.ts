@@ -30,4 +30,8 @@ export class RecipeListCardComponent implements OnInit {
     }
   }
 
+  getStars() {
+    return this.globals.getStars(this.recipe?.avgrating);
+  }
+
 }

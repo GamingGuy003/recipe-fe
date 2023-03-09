@@ -1,0 +1,10 @@
+rec-nav-component {
+  position: fixed;
+  top: 0;
+  z-index: 1000; /* optional, sets the stacking order of the element */
+  width: 100%; /* optional, sets the width of the element to the full width of its container */
+}
+
+div {
+  padding-top: 70px;
+}

@@ -18,6 +18,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatTableModule } from '@angular/material/table';
+import { CookieService } from 'ngx-cookie-service';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +34,7 @@ import { NavComponentComponent } from './nav-component/nav-component.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import { RatingFormComponent } from './rating-form/rating-form.component';
+import { RatingDialogComponent } from './rating-dialog/rating-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +46,8 @@ import { RatingFormComponent } from './rating-form/rating-form.component';
     NavComponentComponent,
     LoginFormComponent,
     SignUpFormComponent,
-    RatingFormComponent
+    RatingFormComponent,
+    RatingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,13 +68,17 @@ import { RatingFormComponent } from './rating-form/rating-form.component';
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule,
+    FlexLayoutModule,
+    MatRadioModule
   ],
   providers: [
     RecipeService,
     Globals,
     FormBuilder,
-    MatSnackBarModule
+    MatSnackBarModule,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

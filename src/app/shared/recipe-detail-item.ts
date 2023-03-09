@@ -6,6 +6,7 @@ export class RecipeDetailItem {
     public recipetext: Map<string, string>,
     public tipptext: Map<string, string>,
     public imagelink: string,
-    public rating: Map<number, string>
+    public ratings: Map<string, number>,
+    public avgrating: number,
   ) {}
 }

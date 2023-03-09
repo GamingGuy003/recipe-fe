@@ -1,8 +1,9 @@
-<div style="width: 100%;">
+<div align="center">
   <h3>Rating</h3>
   <p>Choose a rating:</p>
-  <mat-slider max="5" min="0" step="0.5" [thumbLabel]="true">
-    <input matSliderThumb [(ngModel)]="rating">
+  <br>
+  <mat-slider max="5" min="0" step="0.5" [thumbLabel]="true" [(ngModel)]="rating">
+    <input matSliderThumb >
   </mat-slider>
   <br>
   <button mat-button mat-dialog-close>Cancel</button>
