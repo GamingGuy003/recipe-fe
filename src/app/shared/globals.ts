@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { ApiResponse } from './api-response';
 export class Globals {
@@ -107,17 +107,19 @@ export class Globals {
   }
 
   async checkApiAuth(http: HttpClient, cs: CookieService): Promise<boolean> {
-    try {
-      let formData = new FormData();
-      let authkey = this.getAuthkey(cs);
-      authkey ? formData.append('authkey', authkey) : {};
-      if((await http.post<ApiResponse>(this.apiurl + '/checkauth', formData).toPromise()).response_code !== 200) {
-        return false;
-      } else {
-        return true;
+    while (true) {
+      try {
+        let formData = new FormData();
+        let authkey = this.getAuthkey(cs);
+        authkey ? formData.append('authkey', authkey) : {};
+        if((await http.post<ApiResponse>(this.apiurl + '/checkauth', formData, { headers: new HttpHeaders({ timeout: `${5000}` }) }).toPromise()).response_code !== 200) {
+          return false;
+        } else {
+          return true;
+        }
+      } catch(err) {
+        console.error(err);
       }
-    } catch(err) {
-      return false;
     }
   }
 
