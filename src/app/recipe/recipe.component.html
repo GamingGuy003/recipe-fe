@@ -3,7 +3,7 @@
   <mat-card-content>
     <mat-card-title>{{ this.recipe?.title?.get(getLang(this.recipe)) }}</mat-card-title>
     <mat-card-subtitle>
-      <span style="cursor: pointer;" mat-ripple matTooltip="{{ recipe?.avgrating }} / 5" (click)="showRatings()" style="color: orange;">{{ this.getStars() }} </span><span>({{ this.recipe?.ratings?.size }})</span>
+      <rec-star-rating [rating]="recipe?.avgrating" (click)="showRatings()"></rec-star-rating><span>({{ this.recipe?.ratings?.size }})</span>
       <button mat-icon-button matTooltip="Rate" *ngIf="logged()" (click)="rate()">
         <mat-icon>add</mat-icon>
       </button>

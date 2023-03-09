@@ -35,6 +35,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import { RatingFormComponent } from './rating-form/rating-form.component';
 import { RatingDialogComponent } from './rating-dialog/rating-dialog.component';
+import { StarRatingComponent } from './star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { RatingDialogComponent } from './rating-dialog/rating-dialog.component';
     LoginFormComponent,
     SignUpFormComponent,
     RatingFormComponent,
-    RatingDialogComponent
+    RatingDialogComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,

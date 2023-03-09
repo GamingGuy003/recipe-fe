@@ -3,7 +3,7 @@
   <mat-card *ngFor="let top of toprecipes" routerLink="/recipe/{{top.id}}" mat-ripple>
       <mat-card-header>
         <mat-card-title>{{ top.title.get(getLang(top)) }}</mat-card-title>
-        <mat-card-subtitle><span style="color: orange;" matTooltip="{{ top.avgrating }} / 5 Stars">{{ this.getStars(top) }} </span><span>({{ top.ratingcount }})</span></mat-card-subtitle>
+        <mat-card-subtitle> <rec-star-rating [rating]="top.avgrating" matTooltip="{{ top.avgrating }} / 5 Stars"></rec-star-rating><span>({{ top.ratingcount }})</span></mat-card-subtitle>
       </mat-card-header>
       <img matCardImage [src]="top.imagelink">
       <mat-card-content>
@@ -18,7 +18,7 @@
   <mat-card *ngFor="let random of randomrecipes" routerLink="/recipe/{{random.id}}" mat-ripple>
     <mat-card-header>
       <mat-card-title>{{ random.title.get(getLang(random)) }}</mat-card-title>
-      <mat-card-subtitle><span style="color: orange;" matTooltip="{{ random.avgrating }} / 5 Stars">{{ this.getStars(random) }} </span><span>({{ random.ratingcount }})</span></mat-card-subtitle>
+      <mat-card-subtitle> <rec-star-rating [rating]="random.avgrating" matTooltip="{{ random.avgrating }} / 5 Stars"></rec-star-rating><span>({{ random.ratingcount }})</span></mat-card-subtitle>
     </mat-card-header>
     <img matCardImage [src]="random.imagelink">
     <mat-card-content>

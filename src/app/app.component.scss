@@ -1,10 +1,23 @@
 rec-nav-component {
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 1000; /* optional, sets the stacking order of the element */
   width: 100%; /* optional, sets the width of the element to the full width of its container */
 }
 
 div {
   padding-top: 70px;
+}
+
+@font-face {
+  font-family: 'Noto Sans Symbols 2';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/notosanssymbols2/v6/7Au9p_AqnyWWAxWc3aMw_MFQjBNC7-E.ttf') format('truetype');
+}
+
+body {
+  font-family: 'Noto Sans Symbols 2', sans-serif;
 }

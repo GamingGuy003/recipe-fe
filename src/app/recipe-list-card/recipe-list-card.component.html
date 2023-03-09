@@ -3,7 +3,7 @@
     <div mat-card-avatar style="background-image: url('{{ recipe?.imagelink }}');"></div>
     <mat-card-title>{{ recipe?.title?.get(getLang(recipe)) }}</mat-card-title>
     <mat-card-subtitle>
-      <span style="color: orange;" matTooltip="{{ recipe?.avgrating }} / 5 Stars">{{ this.getStars() }} </span>
+      <rec-star-rating [rating]="recipe?.avgrating" matTooltip="{{ recipe?.avgrating }} / 5 Stars"></rec-star-rating>
       <span>({{ this.recipe?.ratingcount }})</span>
       <p>{{ recipe?.description?.get(getLang(recipe)) }}</p>
     </mat-card-subtitle>

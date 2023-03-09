@@ -71,19 +71,6 @@ export class Globals {
     cs.set('authkey', "");
   }
 
-  getStars(stars: number | undefined) {
-    let ret = "";
-    if (stars) {
-      for (let i = 0; i < Math.floor(stars); i++) {
-        ret += '★';
-      }
-      stars % 1 != 0 ? ret += '⯪' : {};
-    } else {
-      ret = '☆';
-    }
-    return ret
-  }
-
   getUname(cs: CookieService) {
     if (cs.get('username')) {
       return cs.get('username');

@@ -29,9 +29,4 @@ export class RecipeListCardComponent implements OnInit {
       return this.globals.lang;
     }
   }
-
-  getStars() {
-    return this.globals.getStars(this.recipe?.avgrating);
-  }
-
 }

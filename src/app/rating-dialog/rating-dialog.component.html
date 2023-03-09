@@ -7,7 +7,7 @@
     </ng-container>
     <ng-container matColumnDef="rating">
       <th mat-header-cell *matHeaderCellDef>Rating</th>
-      <td mat-cell *matCellDef="let element">{{ element.value }} ⭐</td>
+      <td mat-cell *matCellDef="let element">{{ element.value }}<mat-icon style="color: orange; font-size: medium; transform: translateY(3px);">star</mat-icon></td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="['username', 'rating']"></tr>
     <tr mat-row *matRowDef="let row; columns: ['username', 'rating']"></tr>

@@ -60,9 +60,4 @@ export class RecipeComponent implements OnInit {
   showRatings() {
     this.dialog.open(RatingDialogComponent, {data: this.recipe?.ratings})
   }
-
-  getStars() {
-    return this.globals.getStars(this.recipe?.avgrating);
-  }
-
 }

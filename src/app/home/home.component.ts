@@ -39,9 +39,4 @@ export class HomeComponent implements OnInit {
       return this.globals.lang;
     }
   }
-
-  getStars(recipe: RecipeListItem) {
-    return this.globals.getStars(recipe.avgrating)
-  }
-
 }
