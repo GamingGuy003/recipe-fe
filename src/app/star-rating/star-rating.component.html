@@ -1,9 +1,5 @@
 <span mat-ripple style="cursor: pointer;">
-  <span *ngIf="rating; else norating">
-    <span style="color: orange; font-size: medium; transform: translateY(3px);" class="material-icons" *ngFor="let star of arr(rating)">star</span>
-    <span style="color: orange; font-size: medium; transform: translateY(3px);" class="material-icons" *ngIf="rating % 1 !== 0">star_half</span>
-  </span>
-  <ng-template #norating>
-    <span style="color: orange; font-size: medium; transform: translateY(3px);" class="material-icons">star_border</span>
-  </ng-template>
+  <span style="color: orange; font-size: medium; transform: translateY(3px);" class="material-icons" *ngFor="let star of toArr(full)">star</span>
+  <span style="color: orange; font-size: medium; transform: translateY(3px);" class="material-icons" *ngFor="let half of toArr(half)">star_half</span>
+  <span style="color: orange; font-size: medium; transform: translateY(3px);" class="material-icons" *ngFor="let empt of toArr(empty)">star_border</span>
 </span>

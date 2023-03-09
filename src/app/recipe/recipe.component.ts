@@ -15,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class RecipeComponent implements OnInit {
 
-  recipe: RecipeDetailItem | undefined;
+  recipe!: RecipeDetailItem;
 
   constructor(
     public dialog: MatDialog,

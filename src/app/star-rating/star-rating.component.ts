@@ -8,14 +8,25 @@ import { Component, Input, OnInit } from '@angular/core';
 export class StarRatingComponent implements OnInit {
 
   @Input() rating: number | undefined;
+  full: number = 0;
+  half: number = 0;
+  empty: number = 5;
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.rating)
+    this.rating ? this.full = Math.floor(this.rating) : {};
+    this.rating ? this.rating % 1 == 0 ? {} : this.half = 1 : {};
+    this.empty = this.empty - this.full - this.half;
+    console.log(
+      "full: " + this.full + " half: " + this.half + " empty: " + this.empty
+    );
   }
 
-  arr(n: number): any[] {
-    return Array(Math.floor(n));
+  toArr(n: number) {
+    return new Array(n)
   }
+
 
 }

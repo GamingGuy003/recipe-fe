@@ -1,18 +1,18 @@
 <mat-card>
   <mat-card-header style="background-image: linear-gradient(to bottom, transparent, transparent, transparent, #ffffff), url('{{ this.recipe?.imagelink }}');"></mat-card-header>
   <mat-card-content>
-    <mat-card-title>{{ this.recipe?.title?.get(getLang(this.recipe)) }}</mat-card-title>
+    <mat-card-title>{{ this.recipe.title.get(getLang(this.recipe)) }}</mat-card-title>
     <mat-card-subtitle>
-      <rec-star-rating [rating]="recipe?.avgrating" (click)="showRatings()"></rec-star-rating><span>({{ this.recipe?.ratings?.size }})</span>
+      <rec-star-rating [rating]="recipe.avgrating" (click)="showRatings()"></rec-star-rating><span>({{ this.recipe.ratings.size }})</span>
       <button mat-icon-button matTooltip="Rate" *ngIf="logged()" (click)="rate()">
         <mat-icon>add</mat-icon>
       </button>
     </mat-card-subtitle>
     <h3>Ingredients:</h3>
-    <div class="ingredients" [innerHTML]="this.recipe?.ingredients?.get(getLang(this.recipe))"></div>
+    <div class="ingredients" [innerHTML]="this.recipe.ingredients.get(getLang(this.recipe))"></div>
     <h3>Tips:</h3>
-    <div class="tiptext" [innerHTML]="this.recipe?.tipptext?.get(getLang(this.recipe))"></div>
+    <div class="tiptext" [innerHTML]="this.recipe.tipptext.get(getLang(this.recipe))"></div>
     <h3>Recipe:</h3>
-    <div class="recipetext" [innerHTML]="this.recipe?.recipetext?.get(getLang(this.recipe))"></div>
+    <div class="recipetext" [innerHTML]="this.recipe.recipetext.get(getLang(this.recipe))"></div>
   </mat-card-content>
 </mat-card>
